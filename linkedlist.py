@@ -10,6 +10,10 @@ class Node():
 
 
 class LinkedList():
+    '''
+        Doubly Linked List implementation
+    
+    '''
     def __init__(self, values: List[Any]):
         self._root: Node = None
         self.length: int = 0
@@ -194,7 +198,6 @@ def TestMyMethod():
 
 
 print("Time to create array" ,timeit( CreateList, number = 1))
-print("Time for Mosh's Method",timeit( TestMoshMethod, number = num_trials), "sec")
 print("Time for my method", timeit(TestMyMethod, number = num_trials), "sec")
 
 
