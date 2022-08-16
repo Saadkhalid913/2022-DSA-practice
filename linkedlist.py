@@ -179,8 +179,6 @@ class LinkedList():
         return pointer.v 
 
 
-        
-    
 num_trials = 10000 ## linear 
 num_items = 1000
 L = LinkedList([i for i in range(1, num_items)])

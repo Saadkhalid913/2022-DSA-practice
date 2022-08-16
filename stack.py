@@ -20,7 +20,9 @@ class Stack():
     def __repr__(self):
         return str(self.items)
 
-s = Stack([1,2,3,4])
-print(s.pop())
-s.add(5)
-print(s)
+        
+if __name__ == "__main__":
+    s = Stack([1,2,3,4])
+    print(s.pop())
+    s.add(5)
+    print(s)
