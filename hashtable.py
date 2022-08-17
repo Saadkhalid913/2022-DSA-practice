@@ -23,7 +23,10 @@ class Hashtable():
 
     def __setitem__(self, key, value):
         if (key in self.keys):
-            raise KeyError("Key already exists")
+            hashed_key = id(key) % (self.length)
+            self.items[hashed_key] = (key, value)
+
+
 
         hashed_key = id(key) % (self.length)
         if not self.items[hashed_key]:
@@ -55,6 +58,6 @@ class Hashtable():
 
 if __name__ == "__main__":
     H = Hashtable(10)
-    H[1] = "hello"
+
     print(H[1])
 
