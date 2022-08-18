@@ -1,3 +1,6 @@
+from __future__ import annotations
+from typing import Any, List, Dict, Set, Type, NoReturn, Union
+
 '''
 
 LINK: https://leetcode.com/problems/two-sum/
