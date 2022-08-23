@@ -36,6 +36,32 @@ class Tree():
             else:
                 self._insert(node.l, value)
     
+    def DFT(self) -> List[int]:
+        items = []
+        
+        self._dft(self._root, items)
+
+        return items 
+
+    def _dft(self, node: Node, items: List[int]) -> NoReturn:
+        if node is None:
+            return 
+        else:
+            items.append(node.v) 
+            self._dft(node.l, items)
+            self._dft(node.r, items)
+    
+    def getHeight(self) -> int:
+        return self._getHeight(self._root)
+
+
+    def _getHeight(self, node: Node):
+        if node is None:
+            return 0
+        return 1 + max(self._getHeight(node.l), self._getHeight(node.r))
+            
+
+    
     def __contains__(self, value) -> bool:
         if self._root is None:
             return False 
@@ -58,31 +84,39 @@ class Tree():
                     return False 
             
 
-RangeInterval = 10**4
-trials = 100
-numbers = 1000
+t = Tree()
+t.add(10)
+t.add(9)
+t.add(8)
+t.add(11)
+t.add(12)
+print(t.DFT())
+print(t.getHeight())
+# RangeInterval = 10**4
+# trials = 100
+# numbers = 1000
 
-def TestTreeLookup():
-    t = Tree()
-    for i in range(numbers):
-        t.add(random.randint(1, RangeInterval))
+# def TestTreeLookup():
+#     t = Tree()
+#     for i in range(numbers):
+#         t.add(random.randint(1, RangeInterval))
 
-    for i in range(numbers):
-        num = random.randint(1, RangeInterval)
-        test = num in t 
+#     for i in range(numbers):
+#         num = random.randint(1, RangeInterval)
+#         test = num in t 
 
 
-def TestArrayLookup():
-    t = []
-    for i in range(numbers):
-        t.append(random.randint(1, RangeInterval))
+# def TestArrayLookup():
+#     t = []
+#     for i in range(numbers):
+#         t.append(random.randint(1, RangeInterval))
 
-    for i in range(numbers):
-        num = random.randint(1, RangeInterval)
-        test = num in t 
+#     for i in range(numbers):
+#         num = random.randint(1, RangeInterval)
+#         test = num in t 
 
-print(timeit(TestArrayLookup, number = trials))
-print(timeit(TestTreeLookup, number = trials))
+# print(timeit(TestArrayLookup, number = trials))
+# print(timeit(TestTreeLookup, number = trials))
 
 
     
