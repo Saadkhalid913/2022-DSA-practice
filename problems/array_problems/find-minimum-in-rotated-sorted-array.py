@@ -12,6 +12,8 @@ class Solution(object):
         """
         
         n = len(nums)
+        if n == 1:
+            return nums[0]
         
         RotIndex = self.FindRotIndex(nums)
         return nums[(RotIndex + 1) % (n)]
@@ -34,6 +36,9 @@ class Solution(object):
                 sortedIdx = (startIdx + sortedIdx) // 2
 
         return endIdx
+        
+
+        
 
 
 # Runtime: 44 ms, faster than 41.17% of Python online submissions for Find Minimum in Rotated Sorted Array.
