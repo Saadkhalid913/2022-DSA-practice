@@ -72,7 +72,7 @@ class UndirectedWeightedGraph():
         nodes: List[Tuple[int, int]] = []
         nodes.append((a, 0))
 
-        while len(nodes) > 0:
+        while len(nodes) > 0: # worst case (we need to try every node is O(n))
             cur_node_tuple = nodes.pop(0)
             cur_node = cur_node_tuple[0]
 
@@ -80,7 +80,7 @@ class UndirectedWeightedGraph():
 
             neighbors = self.adj_matrix[cur_node]
 
-            for neighbor, distance in enumerate(neighbors):
+            for neighbor, distance in enumerate(neighbors): # worst case O(n)
                 if visited[neighbor]:
                     continue 
 
@@ -97,6 +97,10 @@ class UndirectedWeightedGraph():
                     index +=1 
                 
                 nodes.insert(index, (neighbor, distance))
+
+        
+        # Since we nest O(n) in an O(n) operation, the time complexity of this algorithm
+        # is O(n^2)
             
         return distances[b]
 
