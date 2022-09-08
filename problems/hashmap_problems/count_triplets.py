@@ -34,7 +34,7 @@ def countTriplets(arr, r):
     
     allNums = {} # all numbers 
     L1Lookup = {} # number of times we've seen L1 * R 
-    for val in reversed(arr):
+    for val in reversed(arr): # we reverse the array because we know that a**2r must appear at a greater index than a*r and a  
 
         # if val * r is the second term in a sequence, then val is the first, so we increment count 
         # by the number of times we've seen val * r ahead of val
