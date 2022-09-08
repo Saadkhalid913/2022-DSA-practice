@@ -37,6 +37,8 @@ class UndirectedUnweightedGraph():
         self.adj_matrix[a][b] = False
         self.adj_matrix[b][a] = False
     
+
+## Undirected Weighted Graph 
 class UndirectedWeightedGraph():
     def __init__(self, n: int):
             self.n: int = n 
@@ -98,11 +100,24 @@ class UndirectedWeightedGraph():
                 
                 nodes.insert(index, (neighbor, distance))
 
-        
+
         # Since we nest O(n) in an O(n) operation, the time complexity of this algorithm
-        # is O(n^2)
-            
+        # is O(n^2)            
         return distances[b]
+
+    def DFS(self, start: int):
+        visited_nodes = [False for i in range(self.n)]
+        self._DFS(start, visited_nodes)
+
+        return visited_nodes
+
+    def _DFS(self, node, visited):
+        if visited[node]:
+            return
+        visited[node] = True
+        for i in range(self.n):
+            if self.adj_matrix[node][i] < float("inf"):
+                self._DFS(i, visited)
 
 
 
@@ -113,10 +128,12 @@ class UndirectedWeightedGraph():
 
 G = UndirectedWeightedGraph(6)
 
+## Djikstras code 
 G.add(0,1,8)
 G.add(1,4,6)
 G.add(1,2,7)
 G.add(2,3,9)
 G.add(3,4,100)
-G.add(2,5,12)
-print(G.ShortestPath(4,3))
+# G.add(2,5,12)
+# print(G.ShortestPath(4,3))
+print(G.DFS(0))
