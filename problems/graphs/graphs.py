@@ -1,5 +1,24 @@
 from __future__ import annotations
-from typing import List, Tuple, Type, Union
+from typing import List, Tuple, Type, Union, Any
+
+class Queue():
+    def __init__(self, items: List[Any] = []):
+        self.items = items 
+
+    def add(self, item):
+        self.items.append(item)
+
+    def remove(self):
+        return self.items.pop(0)
+
+    def __len__(self):
+        return len(self.items)
+
+    def __repr__(self):
+        return str(self.items)
+    def __contains__(self, x):
+        return x in self.items
+
 '''
 
 My Graph Theory Practice File 
@@ -118,6 +137,30 @@ class UndirectedWeightedGraph():
         for i in range(self.n):
             if self.adj_matrix[node][i] < float("inf"):
                 self._DFS(i, visited)
+    
+    def BFS(self, start):
+        q = Queue()
+        visited = [False for i in range(self.n)]
+        visited[start] = True
+        nodes = [start]
+        q.add(start)
+        while len(q) > 0:
+            node = q.remove()
+            for i in range(self.n):
+                if visited[i]:
+                    continue
+                else:
+                    if self.adj_matrix[node][i] < float("inf"):
+                        q.add(i)
+                        nodes.append(i)
+                        visited[i] = True
+        
+        return nodes
+
+
+
+
+
 
 
 
@@ -129,11 +172,22 @@ class UndirectedWeightedGraph():
 G = UndirectedWeightedGraph(6)
 
 ## Djikstras code 
-G.add(0,1,8)
-G.add(1,4,6)
-G.add(1,2,7)
-G.add(2,3,9)
-G.add(3,4,100)
+# G.add(0,1,8)
+# G.add(1,4,6)
+# G.add(1,2,7)
+# G.add(2,3,9)
+# G.add(3,4,100)
 # G.add(2,5,12)
 # print(G.ShortestPath(4,3))
-print(G.DFS(0))
+
+# DFS Code
+# print(G.DFS(0))
+
+G.add(0,1,0)
+G.add(0,2,0)
+G.add(1,3,0)
+G.add(2,4,0)
+G.add(4,5,0)
+G.add(3,5,0)
+
+print(G.BFS(2))

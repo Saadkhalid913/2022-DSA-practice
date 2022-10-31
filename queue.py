@@ -19,6 +19,9 @@ class Queue():
 
     def __repr__(self):
         return str(self.items)
+    def __contains__(self, x):
+        return x in self.items
+
 
 s = Queue([1,2,3,4])
 print(s.remove())
